@@ -17,6 +17,7 @@ function largestProductOfThree (array) {
 	array.sort(function(a, b) {
 		return a - b;
 	});
+	//double negative equal a positive so possible chance of having two large negative
 	var product1 = array[0] * array[1] * array[array.length-1];
 	var product2 = array[array.length-1]*array[array.length-2]*array[array.length-3];
 	console.log(product1,product2,array)
