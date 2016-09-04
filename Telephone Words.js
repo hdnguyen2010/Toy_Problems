@@ -26,4 +26,27 @@ function telephoneWords(digitString) {
         9: ['W', 'X', 'Y', 'Z']
     };
     var result = [];
+    function checker(digits, combos) {
+    	var helperDigits = digits.charAt(0);
+    	if(digits.length === 0) {
+    		result.push(combos);
+    		return;
+    	}
+    	if(!helper[helperDigits]){
+    		combos += helperDigits;
+    		checker(digits.slice(1), combos);
+    	}
+    	else {
+    		for (var i = 0; i < helper[helperDigits].length; i++) {
+    			var temp = combos;
+    			combos += helper[helperDigits][i];
+    			checker(digits.slice(1), combos);
+    			combos = temp;
+    		}
+    	}
+    }
+    checker(digitString, '');
+    return result
 }
+
+console.log(telephoneWords("1123"))
